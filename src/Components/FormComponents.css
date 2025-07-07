@@ -1,0 +1,114 @@
+form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form .full-width {
+  grid-column: 1 / -1;
+}
+
+form .half-width {
+  grid-column: span 2;
+}
+
+form h2,
+form h3,
+form h4 {
+  text-align: left;
+  margin: 0;
+}
+
+form .error-display {
+  color: red;
+  font-size: 14px;
+}
+
+form .error-display::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+form .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+form .form-field label,
+form fieldset.form-field {
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left;
+}
+
+form .form-field input,
+form .form-field select,
+form fieldset.form-field {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form .form-field select[multiple] {
+  padding: 0;
+  height: auto;
+  min-height: 120px;
+  resize: vertical;
+}
+
+form .form-field select[multiple] option:hover {
+  background-color: #f5f5f5;
+}
+
+form fieldset.form-field.checkbox-group .checkbox-options,
+form fieldset.form-field.radio-group .radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form fieldset.form-field.checkbox-group .checkbox-options .checkbox-option label,
+form fieldset.form-field.radio-group .radio-options .radio-option label {
+  margin: 10px;
+}
+
+form .button-group {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+}
+
+form .button-group input[type="submit"],
+form .button-group button {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: auto;
+}
+
+form .button-group input[type="submit"]:hover,
+form .button-group button:hover {
+  background: #bf1650;
+  transition: 0.3s all;
+}
+
+form .button-group input[type="submit"]:active,
+form .button-group button:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
