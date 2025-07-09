@@ -202,7 +202,6 @@ function App() {
     favColor: ''
   };
 
-
   const onSubmit: SubmitHandler<TFormInput> = useCallback((data) => {
     console.log(data);
     setFormResults(data);
@@ -214,7 +213,7 @@ function App() {
       fieldLabels: {
         dob: "Date of Birth",
         tob: "Time of Birth",
-        favProgrammingLang: "Favourite Programming Languages"
+        favProgrammingLang: "Favourite Programming Language"
       }
     }
   }, [formResults]);

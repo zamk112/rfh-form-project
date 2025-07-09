@@ -53,7 +53,7 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                                             disabled={option.disabled}
                                             checked={isChecked}
                                             {...htmlAttributes}
-                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
                                                 if (type === 'checkbox') {
                                                     const currentValues = field.value || [];
                                                     if (e.target.checked) {
@@ -143,7 +143,7 @@ export const SelectComponent = ({ name, className, labelDescription, options, mu
                         multiple={multiple}
                         size={size}
                         {...htmlAttributes}
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => {
                             if (multiple) {
                                 const selectedValues = Array.from(e.target.selectedOptions)
                                     .map(option => option.value);
