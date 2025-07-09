@@ -26,13 +26,13 @@ export const ReactSelectComponent = <T extends OptionType = OptionType>({ name, 
                                 : options.find(option => option.value === field.value) || null
                         }
                         onChange={
-                            (options: SingleValue<T> | MultiValue<T> | null | []): void => {
+                            (userSelectionData: SingleValue<T> | MultiValue<T> | null | []): void => {
                                 if (isMulti) {
-                                    const values = (options as MultiValue<T>)?.map(option => option.value) || [];
+                                    const values = (userSelectionData as MultiValue<T>)?.map(option => option.value) || [];
                                     field.onChange(values);
                                 }
                                 else {
-                                    const value = (options as SingleValue<T>)?.value || null;
+                                    const value = (userSelectionData as SingleValue<T>)?.value || null;
                                     field.onChange(value);
                                 }
                             }}
