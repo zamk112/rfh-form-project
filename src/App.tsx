@@ -6,7 +6,7 @@ import type { TFormInput } from './Types/TFormProps';
 import { formattedDateTimeLongNow } from './Utilities/DtHelpers';
 import { useCallback, useMemo, useState } from 'react';
 import { ReactSelectComponent } from './Components/ReactSelectComponent';
-import type { IReactSelectComponentProp } from './Interfaces/IReactSelectComponentProps';
+import type { IOptionType, IReactSelectComponentProp, IReactSelectGroupedComponentProp, IReactSelectGroupProp } from './Interfaces/IReactSelectComponentProps';
 import { FormResultComponent } from './Components/FormResultComponents';
 
 function App() {
@@ -183,15 +183,79 @@ function App() {
     ],
   };
 
-  const favProgrammingLang: IReactSelectComponentProp = {
-    name: 'favProgrammingLangs',
-    labelDescription: 'Favourite Programming Languages',
+  const favProgrammingLang: IReactSelectComponentProp<IOptionType> = {
+    name: 'favProgrammingLang',
+    labelDescription: 'Favourite Programming',
     options: [
       { value: 'CSharp', label: 'C#' },
       { value: 'T-SQL', label: 'T-SQL' },
       { value: 'JavaScript', label: 'JavaScript' },
     ]
   };
+
+  const favProgFramework: IReactSelectGroupedComponentProp<IOptionType, IReactSelectGroupProp> = {
+    name: 'favProgFramework',
+    labelDescription: 'Favourite Frameworks',
+    options: [
+      {
+        label: "dotNet",
+        options: [
+          { label: "Linq", value: "linq" },
+          { label: "Dependency Injection", value: "di" },
+          { label: "Community Toolkit MVVM", value: "CommunityToolkit.Mvvm" },
+        ]
+      },
+      {
+        label: "JavaScript",
+        options: [
+          { label: "ReactJs", value: "reactjs" },
+          { label: "AngularJs", value: "angularjs" },
+          { label: "JQuery", value: "jquery" },
+          { label: "script.aculo.us", value: "script.aculo.us" }
+        ]
+      }
+    ]
+  };
+
+  const favReactLibs: IReactSelectComponentProp<IOptionType> = {
+    name: 'favReactLibs',
+    labelDescription: 'Favourite React Libs',
+    className: 'form-field half-width',
+    isMulti: true,
+    options: [
+      { label: "React Hook Forms", value: "react-hook-form" },
+      { label: "React Select", value: "react-select" },
+      { label: "React Router", value: "react-router-dom" },
+      { label: "React Redux", value: "react-redux" },
+    ],
+  };
+
+  const favGamesGrouped: IReactSelectGroupedComponentProp<IOptionType, IReactSelectGroupProp> = {
+    name: 'favLibGrouped',
+    className: 'form-field half-width',
+    labelDescription: 'Favourite Games Grouped',
+    isMulti: true,
+    options: [
+      {
+        label: "FPS",
+        options: [
+          { label: "Doom", value: "doom" },
+          { label: "Call of Duty", value: "call-of-duty" },
+          { label: "Counter Strike", value: "counter-strike" },
+          { label: "Halo", value: "halo" }
+        ]
+      },
+      {
+        label: "MMORPG",
+        options: [
+          { label: "Final Fantasy 14", value: "final-fantasy-14" },
+          { label: "World of Warcraft", value: "world-of-warcraft" },
+          { label: "Phantasy Star Online", value: "phantasy-star-online" },
+        ]
+      }
+    ],
+  };
+  
   // #endregion
 
   const defaultValues: TFormInput = {
@@ -246,6 +310,10 @@ function App() {
         <h2 className='full-width'>React Select Component</h2>
         <h3 className='full-width'>Non-Async Select</h3>
         <ReactSelectComponent {...favProgrammingLang} />
+        <ReactSelectComponent {...favProgFramework} />
+        <h4 className='full-width'>Multi Select</h4>
+        <ReactSelectComponent {...favReactLibs} />
+        <ReactSelectComponent {...favGamesGrouped} />
       </FormComponent>
 
       {formResults && <FormResultComponent {...formResultData} />}

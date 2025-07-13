@@ -15,4 +15,7 @@ export type TFormInput =
     favMusic?: string[];
     favColor?: string;
     favProgrammingLang?: string;
+    favProgFramework?: string;
+    favReactLibs?: string[];
+    favLibGrouped?: string[];
   }
