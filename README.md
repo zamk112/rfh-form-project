@@ -5,11 +5,12 @@ This project is sort of like a cheatsheet for building forms in React quickly wi
 See Table of Contents as I am documenting the development and my thoughts on WordPress 🙂.
 
 # Project Specs
-* Node version: v24.3.0
+* Node version: v24.4.1
 * TypeScript version: 5.8.3
 * React version: 19.1.0
 * react-hook-form version: 7.58.1
 * react-select version: 5.10.1
+* vitest version: 3.2.4
 
 
 # Table of Contents

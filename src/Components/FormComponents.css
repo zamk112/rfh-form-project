@@ -22,21 +22,6 @@ form h4 {
   margin: 0;
 }
 
-form .form-field-wrapper {
-  display: block;
-}
-
-form .form-field-wrapper .error-display {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-form .form-field-wrapper .error-display::before {
-  display: inline;
-  content: "⚠ ";
-}
-
 form .form-field {
   display: flex;
   flex-direction: column;
