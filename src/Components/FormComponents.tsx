@@ -1,9 +1,10 @@
 import { Controller, FormProvider, useForm, useFormContext, type DefaultValues, type FieldValues } from "react-hook-form";
 import type { IFormProp, IInputProp, ISelectOptGroup, ISelectOption, ISelectProp } from "../Interfaces/IFormComponentsProps";
-import { ErrorMessage } from "@hookform/error-message";
+import type { JSX } from "react";
+import { withErrorDisplayHoC } from "./FormComponentUtilities";
 import './FormComponents.css';
 
-export const FormComponent = <T extends FieldValues>({ children, defaultValues, onSubmit, htmlAttributes }: IFormProp<T>) => {
+export const FormComponent = <T extends FieldValues>({ children, defaultValues, onSubmit, htmlAttributes }: IFormProp<T>): JSX.Element => {
     const methods = useForm<T>({ defaultValues: defaultValues as DefaultValues<T> });
     const { handleSubmit, reset } = methods;
 
@@ -20,13 +21,7 @@ export const FormComponent = <T extends FieldValues>({ children, defaultValues, 
     );
 }
 
-export const ErrorDisplay = ({ name }: { name: string }) => {
-    const { formState: { errors } } = useFormContext();
-
-    return <ErrorMessage name={name} errors={errors} render={({ message }) => <span className="error-display">{message}</span>} />;
-};
-
-export const InputComponent = ({ name, className, labelDescription, type, optionsProp, rules, htmlAttributes }: IInputProp) => {
+export const InputComponent = ({ name, className, labelDescription, type, optionsProp, rules, htmlAttributes }: IInputProp): JSX.Element => {
     const { /* register, */ control } = useFormContext();
 
     if ((type === 'checkbox' || type === 'radio') && optionsProp) {
@@ -75,7 +70,6 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                         </div>
                     )}
                 />
-                <ErrorDisplay name={name} />
             </fieldset>
         )
     }
@@ -93,12 +87,11 @@ export const InputComponent = ({ name, className, labelDescription, type, option
             />
             {/* <input type={type} 
                     {...register(name, { required: required?.required ? required.requiredMessage  : false })} /> */}
-            <ErrorDisplay name={name} />
         </div>
     )
 }
 
-export const SelectComponent = ({ name, className, labelDescription, options, multiple, size, rules, htmlAttributes }: ISelectProp) => {
+export const SelectComponent = ({ name, className, labelDescription, options, multiple, size, rules, htmlAttributes }: ISelectProp): JSX.Element => {
     const { control } = useFormContext();
 
     const renderOptions = () => {
@@ -160,7 +153,9 @@ export const SelectComponent = ({ name, className, labelDescription, options, mu
                     </select>
                 )}
             />
-            <ErrorDisplay name={name} />
         </div>
     );
 }
+
+export const InputComponentWithError = withErrorDisplayHoC(InputComponent);
+export const SelectComponentWithError = withErrorDisplayHoC(SelectComponent);

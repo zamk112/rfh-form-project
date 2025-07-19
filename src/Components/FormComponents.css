@@ -22,12 +22,17 @@ form h4 {
   margin: 0;
 }
 
-form .error-display {
-  color: red;
-  font-size: 14px;
+form .form-field-wrapper {
+  display: block;
 }
 
-form .error-display::before {
+form .form-field-wrapper .error-display {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+form .form-field-wrapper .error-display::before {
   display: inline;
   content: "⚠ ";
 }

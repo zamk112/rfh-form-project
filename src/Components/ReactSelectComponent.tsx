@@ -1,6 +1,8 @@
+import type { JSX } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import ReactSelect, { type GroupBase, type MultiValue, type SingleValue } from "react-select";
 import type { IOptionType,  IReactSelectComponentProp, IReactSelectGroupedComponentProp } from "../Interfaces/IReactSelectComponentProps";
+import { withErrorDisplayHoC } from "./FormComponentUtilities";
 import "./ReactSelectComponent.css";
 
 export const ReactSelectComponent = <TOption extends IOptionType, TGroup extends GroupBase<TOption>>(
@@ -13,7 +15,7 @@ export const ReactSelectComponent = <TOption extends IOptionType, TGroup extends
     pageSize, 
     rules, 
     formatGroupLabelProp 
-}: IReactSelectComponentProp<TOption> | IReactSelectGroupedComponentProp<TOption, TGroup>) => {
+}: IReactSelectComponentProp<TOption> | IReactSelectGroupedComponentProp<TOption, TGroup>): JSX.Element => {
     const { control } = useFormContext();
 
     const formatGroupLabel = (data: TGroup) => (
@@ -28,7 +30,7 @@ export const ReactSelectComponent = <TOption extends IOptionType, TGroup extends
             typeof item === 'object' && 
             'label' in item &&
             'options' in item && 
-            Array.isArray((item).options);
+            Array.isArray((item as TGroup).options);
     };
 
     const getAllOptions = (): TOption[] => {
@@ -90,3 +92,5 @@ export const ReactSelectComponent = <TOption extends IOptionType, TGroup extends
     )
 
 }
+
+export const ReactSelectComponentWithError = withErrorDisplayHoC(ReactSelectComponent);

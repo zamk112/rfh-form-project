@@ -1,11 +1,11 @@
 import './App.css'
 import type { SubmitHandler } from 'react-hook-form';
-import { FormComponent, InputComponent, SelectComponent } from './Components/FormComponents';
+import { FormComponent, InputComponent, InputComponentWithError, SelectComponent, SelectComponentWithError } from './Components/FormComponents';
 import type { IFormResultsProp, IInputProp, ISelectProp } from './Interfaces/IFormComponentsProps';
 import type { TFormInput } from './Types/TFormProps';
 import { formattedDateTimeLongNow } from './Utilities/DtHelpers';
 import { useCallback, useMemo, useState } from 'react';
-import { ReactSelectComponent } from './Components/ReactSelectComponent';
+import { ReactSelectComponent, ReactSelectComponentWithError } from './Components/ReactSelectComponent';
 import type { IOptionType, IReactSelectComponentProp, IReactSelectGroupedComponentProp, IReactSelectGroupProp } from './Interfaces/IReactSelectComponentProps';
 import { FormResultComponent } from './Components/FormResultComponents';
 
@@ -26,7 +26,6 @@ function App() {
     labelDescription: 'Last Name',
     type: 'text',
     rules: { required: 'Last Name is required' }
-
   };
 
   const dob: IInputProp = {
@@ -190,7 +189,8 @@ function App() {
       { value: 'CSharp', label: 'C#' },
       { value: 'T-SQL', label: 'T-SQL' },
       { value: 'JavaScript', label: 'JavaScript' },
-    ]
+    ],
+    rules: { required: 'Programming Language is required' }
   };
 
   const favProgFramework: IReactSelectGroupedComponentProp<IOptionType, IReactSelectGroupProp> = {
@@ -289,12 +289,12 @@ function App() {
         <h2 className='full-width'>React Controlled Input and Select Components</h2>
         <h3 className='full-width'>Input Components</h3>
         <h4 className='full-width'>Text Based Components</h4>
-        <InputComponent {...firstName} />
-        <InputComponent {...lastName} />
+        <InputComponentWithError {...firstName} />
+        <InputComponentWithError {...lastName} />
         <InputComponent name="age" labelDescription="Age" type="number" htmlAttributes={{ step: 2 }} />
-        <InputComponent {...password} />
+        <InputComponentWithError {...password} />
         <h4 className='full-width'>Date Time Based Components</h4>
-        <InputComponent {...dob} />
+        <InputComponentWithError {...dob} />
         <InputComponent {...tob} />
         <InputComponent {...dateTimeUpdate} />
         <h4 className='full-width'>Range Based Components</h4>
@@ -304,12 +304,12 @@ function App() {
         <InputComponent {...favMusic} />
         <InputComponent {...favNumbers} />
         <h3 className='full-width'>Select Based Components</h3>
-        <SelectComponent {...gender} />
+        <SelectComponentWithError {...gender} />
         <SelectComponent {...favCar} />
         <SelectComponent {...favPets} />
         <h2 className='full-width'>React Select Component</h2>
         <h3 className='full-width'>Non-Async Select</h3>
-        <ReactSelectComponent {...favProgrammingLang} />
+        <ReactSelectComponentWithError {...favProgrammingLang} />
         <ReactSelectComponent {...favProgFramework} />
         <h4 className='full-width'>Multi Select</h4>
         <ReactSelectComponent {...favReactLibs} />
