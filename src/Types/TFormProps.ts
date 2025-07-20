@@ -9,7 +9,7 @@ export type TFormInput =
     tob?: Date;
     dateTimeUpdate?: Date | string;
     password: string;
-    loudness?: number,
+    loudness?: number;
     favCar?: string;
     favPets?: string[];
     favMusic?: string[];
