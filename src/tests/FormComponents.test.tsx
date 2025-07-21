@@ -145,8 +145,8 @@ describe('InputComponent', () => {
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
         expect(mockSubmit).toHaveBeenCalledWith(
-            expect.objectContaining({ loudness: '80' }),
-            //expect.objectContaining({ loudness: 80 }),
+            //expect.objectContaining({ loudness: '80' }),
+            expect.objectContaining({ loudness: 80 }),
             expect.anything()
         );
     });

@@ -55,7 +55,7 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                                                         field.onChange([...currentValues, option.value]);
                                                     }
                                                     else {
-                                                        field.onChange(currentValues.filter((val: unknown) => val != option.value))
+                                                        field.onChange(currentValues.filter((val: number | string) => val != option.value))
                                                     }
                                                 }
                                                 else {
@@ -82,7 +82,23 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                 name={name}
                 rules={{ ...rules }}
                 render={({ field }) => (
-                    <input {...field} id={name} type={type} {...htmlAttributes} value={field.value ?? ''} />
+                    <input 
+                        {...field} 
+                        id={name} 
+                        type={type} 
+                        {...htmlAttributes} 
+                        value={field.value as string | number ?? ""} 
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        { 
+                            if (['number', 'range'].includes(type)) 
+                                field.onChange(Number(e.target.value)); // field.onChange(e.target.valueAsNumber);
+                            // else if (['date', 'time', 'datetime-local', 'week', 'month'].includes(type))
+                            //     field.onChange(e.target.valueAsDate)
+                            else
+                                field.onChange(e.target.value);
+                        } 
+                        }
+                    />
                 )}
             />
             {/* <input type={type} 
