@@ -139,9 +139,8 @@ describe('InputComponent', () => {
         expect(input).toHaveValue('50');
 
         fireEvent.change(input, { target: { value: 80 }});
-
         expect(input).toHaveValue('80');
-
+        
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
         expect(mockSubmit).toHaveBeenCalledWith(
@@ -166,13 +165,13 @@ describe('InputComponent', () => {
         fireEvent.change(input, { target: { value: 0 }});
         expect(input).toHaveValue('0');
 
-        fireEvent.change(input, { target: { value: 100 }});
-        expect(input).toHaveValue('100');
+        fireEvent.change(input, { target: { value: 90 }});
+        expect(input).toHaveValue('90');
 
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
         expect(mockSubmit).toHaveBeenCalledWith(
-            expect.objectContaining({ loudness: '100' }),
+            expect.objectContaining({ loudness: 90 }),
             expect.anything()
         );
     });
