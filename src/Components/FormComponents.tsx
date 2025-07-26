@@ -55,7 +55,7 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                                                         field.onChange([...currentValues, option.value]);
                                                     }
                                                     else {
-                                                        field.onChange(currentValues.filter((val: typeof option.value) => val != option.value))
+                                                        field.onChange(currentValues.filter((val: typeof option.value) => val != option.value));
                                                     }
                                                 }
                                                 else {
@@ -88,7 +88,7 @@ export const InputComponent = ({ name, className, labelDescription, type, option
                         type={type} 
                         {...htmlAttributes} 
                         value={field.value as string | number ?? ""} 
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
                             { 
                                 if (['number', 'range'].includes(type)) 
                                     field.onChange(Number(e.target.value)); // field.onChange(e.target.valueAsNumber);

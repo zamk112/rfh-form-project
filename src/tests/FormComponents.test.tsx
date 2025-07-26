@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FormComponent, InputComponent, InputComponentWithError, SelectComponent, SelectComponentWithError } from '../Components/FormComponents';
 import type { IInputProp, ISelectProp } from '../Interfaces/IFormComponentsProps';
@@ -31,17 +31,15 @@ describe('FormComponent', () => {
 
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                { test: 'value' },
-                expect.objectContaining({ 
-                    type: 'submit',
-                    target: expect.any(HTMLFormElement)
-                 }),
-                // expect.any(Object)
-                // expect.anything()
-            );
-        });
+        expect(mockSubmit).toHaveBeenCalledWith(
+            { test: 'value' },
+            expect.objectContaining({ 
+                type: 'submit',
+                target: expect.any(HTMLFormElement)
+                }),
+            // expect.any(Object)
+            // expect.anything()
+        );
     });
 
     it('resets form when reset button is clicked', async () => {
@@ -62,9 +60,7 @@ describe('FormComponent', () => {
 
         await user.click(screen.getByRole('button', { name: /reset/i }))
 
-        await waitFor(() => {
-            expect(input).toHaveValue('default')
-        });
+        expect(input).toHaveValue('default')
 
     });
 });
@@ -147,7 +143,7 @@ describe('InputComponent', () => {
             //expect.objectContaining({ loudness: '80' }),
             expect.objectContaining({ loudness: 80 }),
             expect.anything()
-        );
+        );  
     });
 
     it('should handle range input boundary values', async () => {
@@ -194,9 +190,7 @@ describe('InputComponentWithError', () => {
 
         await user.click(screen.getByRole('button', { name: /submit/i }));
         
-        await waitFor(() => {
-            expect(screen.getByText('This field is required')).toBeInTheDocument();
-        });
+        expect(screen.getByText('This field is required')).toBeInTheDocument();
 
         expect(mockSubmit).not.toHaveBeenCalled();
     });
@@ -227,9 +221,7 @@ describe('InputComponentWithError', () => {
         await user.type(input, 'short');
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(screen.getByText('Password must be at least 8 characters')).toBeInTheDocument();
-        });
+        expect(screen.getByText('Password must be at least 8 characters')).toBeInTheDocument();
     });
 });
 
@@ -275,14 +267,12 @@ describe('InputComponent - Checkbox', () => {
         await user.click(screen.getByLabelText('Hip Hop'));
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                expect.objectContaining({
-                    favMusic: ['rap', 'hiphop']
-                }),
-                expect.anything()
-            );
-        });
+        expect(mockSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({
+                favMusic: ['rap', 'hiphop']
+            }),
+            expect.anything()
+        );
     });
 
     it('handles checkbox delection', async () => {
@@ -298,12 +288,10 @@ describe('InputComponent - Checkbox', () => {
         await user.click(screen.getByLabelText('Rap'));
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                expect.objectContaining({ favMusic: ['hiphop'] }),
-                expect.anything()
-            );
-        });
+        expect(mockSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({ favMusic: ['hiphop'] }),
+            expect.anything()
+        );
     });
 });
 
@@ -348,12 +336,10 @@ describe('InputComponent - Radio', () => {
         await user.click(screen.getByLabelText('Blue'));
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                expect.objectContaining({ favColor: 'blue' }),
-                expect.anything()
-            );
-        });
+        expect(mockSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({ favColor: 'blue' }),
+            expect.anything()
+        );
     });
 });
 
@@ -393,12 +379,10 @@ describe('SelectComponent', () => {
         await user.selectOptions(screen.getByLabelText('Gender'), 'M');
         await user.click(screen.getByRole('button', { name: /submit/i }));
 
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                expect.objectContaining({ gender: 'M'}),
-                expect.anything()
-            );
-        });
+        expect(mockSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({ gender: 'M'}),
+            expect.anything()
+        );
     });
 
     it('renders select with optgroups', () => {
@@ -472,13 +456,12 @@ describe('SelectComponent', () => {
         const select = screen.getByLabelText('Favourite Pets');
         await user.selectOptions(select, ['dog', 'cat']);
         await user.click(screen.getByRole('button', { name: /submit/i }));
-        
-        await waitFor(() => {
-            expect(mockSubmit).toHaveBeenCalledWith(
-                expect.objectContaining({ favPets: ['dog', 'cat'] }),
-                expect.anything()
-            );
-        });
+
+
+        expect(mockSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({ favPets: ['dog', 'cat'] }),
+            expect.anything()
+        );
     })    
 });
 
@@ -506,9 +489,7 @@ describe('SelectComponentWithError', () => {
         
         await user.click(screen.getByRole('button', { name: /submit/i }));
         
-        await waitFor(() => {
-            expect(screen.getByText('Gender is required')).toBeInTheDocument();
-        });
+        expect(screen.getByText('Gender is required')).toBeInTheDocument();
 
         expect(mockSubmit).not.toHaveBeenCalled();        
     });

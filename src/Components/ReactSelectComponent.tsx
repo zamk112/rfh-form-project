@@ -60,7 +60,7 @@ export const ReactSelectComponent = <TOption extends IOptionType, TGroup extends
                 render={({ field }) => (
                     <ReactSelect<TOption, boolean, TGroup>
                         {...field}
-                        id={name}
+                        inputId={name}
                         className="react-select-container"
                         classNamePrefix="react-select"
                         options={options}
