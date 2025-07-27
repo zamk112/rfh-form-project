@@ -17,3 +17,74 @@ input[type="submit"] {
   padding: 10px 20px;
   border-radius: 4px;
 }
+
+nav {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0;
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  font-size: 0;
+}
+
+nav a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  flex: 1;
+  text-align: center;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 1);
+  border-bottom-color: #ec5990;
+}
+
+nav a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ec5990;
+  border-bottom-color: #ec5990;
+  font-weight: 600;
+}
+
+nav a.active:hover {
+  color: #f8a2c1;
+  border-bottom-color:  #f8a2c1;
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav a {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-width: max-content;
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  nav a {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}

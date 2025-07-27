@@ -288,7 +288,7 @@ const SyncFormPage = (): JSX.Element => {
 
     return (
         <>
-            <h1>React Hook Forms Synchronous Cheatsheet</h1>
+            <h1>Synchronous Cheatsheet</h1>
             <FormComponent defaultValues={defaultValues} onSubmit={onSubmit}>
                 <h2 className='full-width'>React Controlled Input and Select Components</h2>
                 <h3 className='full-width'>Input Components</h3>
