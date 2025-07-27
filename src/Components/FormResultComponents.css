@@ -1,7 +1,7 @@
 .results-panel {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 100px;
+    right: 170px;
     width: 350px;
     max-height: 80vh;
     background: rgba(255, 255, 255, 0.95);

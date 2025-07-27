@@ -1,0 +1,1 @@
+export type TAppPagesProp = "home" | "SyncFormPage" | "AsyncFormPage";
