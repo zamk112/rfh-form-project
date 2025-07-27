@@ -11,7 +11,7 @@ function App() {
 
   const getPageFromPath = (path: string): TAppPagesProp => {
     if (path === '/sync-form') return 'SyncFormPage';
-    if (path == '/async-form') return 'AsyncFormPage';
+    if (path === '/async-form') return 'AsyncFormPage';
     return 'home';
   };
 
@@ -20,7 +20,7 @@ function App() {
     
     let path = '/';
     if (page === 'SyncFormPage') path = '/sync-form';
-    if (page == 'AsyncFormPage') path = '/async-form';
+    if (page === 'AsyncFormPage') path = '/async-form';
 
     window.history.pushState({}, '', path);
     setCurrentPage(page)
