@@ -4,9 +4,9 @@ const LayoutComponent = ({ NavBar, Main }: { NavBar: React.ReactNode, Main: Reac
 
     return(
         <>
-            <div className="navbar">
+            <header>
                 {NavBar}
-            </div>
+            </header>
             <main>
                 {Main}
             </main>
