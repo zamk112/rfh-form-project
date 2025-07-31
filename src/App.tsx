@@ -10,20 +10,27 @@ function App() {
   const [currentPage, setCurrentPage] = useState<TAppPagesProp>("home");
 
   const getPageFromPath = (path: string): TAppPagesProp => {
-    if (path === '/sync-form') return 'SyncFormPage';
-    if (path === '/async-form') return 'AsyncFormPage';
-    return 'home';
+
+    switch(path)
+    {
+      case "/":
+        return "home";
+      case "/sync-form":
+        return "SyncFormPage";
+      case "/async-form":
+        return "AsyncFormPage";
+      default:
+        return "home";
+    }
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, page: TAppPagesProp): void => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
     e.preventDefault();
     
-    let path = '/';
-    if (page === 'SyncFormPage') path = '/sync-form';
-    if (page === 'AsyncFormPage') path = '/async-form';
+    const href = e.currentTarget.getAttribute('href')!;
 
-    window.history.pushState({}, '', path);
-    setCurrentPage(page)
+    window.history.pushState({}, '', href);
+    setCurrentPage(getPageFromPath(href));
   };
 
   useEffect(() => {
@@ -54,9 +61,9 @@ function App() {
     return(
       <>
         <nav>
-          <a href="#" onClick={(e) => handleNavClick(e, 'home')} className={currentPage === 'home' ? 'active': ''}>Home</a>
-          <a href="#" onClick={(e) => handleNavClick(e, 'SyncFormPage')} className={currentPage === 'SyncFormPage' ? 'active': ''}>Synchronous Form Page</a>
-          <a href="#" onClick={(e) => handleNavClick(e, 'AsyncFormPage')} className={currentPage === 'AsyncFormPage' ? 'active': ''}>Asynchronous Form Page</a>
+          <a href="/" onClick={(e) => handleNavClick(e)} className={currentPage === 'home' ? 'active': ''}>Home</a>
+          <a href="/sync-form" onClick={(e) => handleNavClick(e)} className={currentPage === 'SyncFormPage' ? 'active': ''}>Synchronous Form Page</a>
+          <a href="/async-form" onClick={(e) => handleNavClick(e)} className={currentPage === 'AsyncFormPage' ? 'active': ''}>Asynchronous Form Page</a>
         </nav>
       </>
     );
