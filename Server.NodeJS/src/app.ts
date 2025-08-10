@@ -42,7 +42,7 @@ app.use((err: Error, req: Request, res: Response, next: any) => {
     console.error('Unhandled error:', err);
     res.status(500).json({
         success: false,
-        message: `Route ${req.method} ${req.path} not found`
+        message: `Internal Server error`
     });
 });
 
