@@ -16,6 +16,19 @@ export interface IFormChildrenProp {
     htmlAttributes?: unknown;
 };
 
+export interface IInputProp extends IFormChildrenProp {
+    type: string;
+    optionsProp?: { options: IInputOptionsProp[], optClassName?: string }
+    htmlAttributes?: Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'id' | 'type' | 'required' | 'value'>
+};
+
+export interface ISelectProp extends IFormChildrenProp {
+    options: (ISelectOption | ISelectOptGroup)[];
+    multiple?: boolean;
+    size?: number;
+    htmlAttributes?: Omit<SelectHTMLAttributes<HTMLSelectElement>, 'name' | 'id' | 'required' | 'value' | 'multiple' | 'size'>
+};
+
 export interface IOptionProp {
     value: string | number;
     label: string;
@@ -28,12 +41,6 @@ export interface IInputOptionsProp extends IOptionProp {
     htmlAttributes?: Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'id' | 'type' | 'required' | 'value'>
 }
 
-export interface IInputProp extends IFormChildrenProp {
-    type: string;
-    optionsProp?: { options: IInputOptionsProp[], optClassName?: string }
-    htmlAttributes?: Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'id' | 'type' | 'required' | 'value'>
-};
-
 export interface ISelectOption extends IOptionProp {
     htmlAttributes?: Omit<OptionHTMLAttributes<HTMLOptionElement>, 'value' | 'label' | 'disabled'>;
 };
@@ -43,13 +50,6 @@ export interface ISelectOptGroup {
     disabled?: boolean;
     iSelectOptions: ISelectOption[];
     htmlAttributes?: Omit<OptgroupHTMLAttributes<HTMLOptGroupElement>, 'label' | 'disabled'>;
-};
-
-export interface ISelectProp extends IFormChildrenProp {
-    options: (ISelectOption | ISelectOptGroup)[];
-    multiple?: boolean;
-    size?: number;
-    htmlAttributes?: Omit<SelectHTMLAttributes<HTMLSelectElement>, 'name' | 'id' | 'required' | 'value' | 'multiple' | 'size'>
 };
 
 export interface IFormResultsProp<T> {

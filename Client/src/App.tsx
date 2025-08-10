@@ -4,7 +4,7 @@ import SyncFormPage from "./Pages/SyncFormPage";
 import Home from "./Pages/HomePage";
 import AsyncFormPage from "./Pages/AsyncFormPage";
 import LayoutComponent from "./Layouts/Layout";
-import type { TAppPagesProp } from "./Types/AppTypesProps";
+import type { TAppPagesProp } from "./Types/TAppProps";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<TAppPagesProp>("home");
