@@ -4,7 +4,7 @@ import { setTimeout } from "timers/promises";
 
 export class UserService implements IUserServices {
     static readonly TIMEOUT: number = 2000;
-    static userIds: number = 0;
+    static userIds: number = 1;
     static users: User[] = [
         new User(this.userIds++, 'zamk112', 'zamk112@gmail.com', new Date(), new Date()),
         new User(this.userIds++, 'zav454', 'zav454@someemail.com', new Date(), new Date())

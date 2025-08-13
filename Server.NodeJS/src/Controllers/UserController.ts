@@ -6,7 +6,7 @@ import { APIResponse } from "../Types/TAPIResponse";
 class UserController {
     constructor(private userService: IUserServices){}
 
-    async getAllUsers(req: Request, res: Response): Promise<void>
+    public async getAllUsers(req: Request, res: Response): Promise<void>
     {
         try 
         {
@@ -30,7 +30,7 @@ class UserController {
         }
     }
 
-    async getUserById(req: Request, res: Response): Promise<void>
+    public async getUserById(req: Request, res: Response): Promise<void>
     {
         try 
         {
@@ -76,7 +76,7 @@ class UserController {
         }
     }
     
-    async createUser(req: Request, res: Response): Promise<void> {
+    public async createUser(req: Request, res: Response): Promise<void> {
         try {
             const userData = req.body;
 
@@ -116,7 +116,7 @@ class UserController {
         }
     }
 
-    async updateUser(req: Request, res: Response): Promise<void> {
+    public async updateUser(req: Request, res: Response): Promise<void> {
         try
         {
             const id = parseInt(req.params.id);
@@ -159,7 +159,7 @@ class UserController {
         }
     }
 
-    async deleteUser(req: Request, res: Response): Promise<void> {
+    public async deleteUser(req: Request, res: Response): Promise<void> {
         try 
         {
             const id = parseInt(req.params.id);

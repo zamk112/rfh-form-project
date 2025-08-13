@@ -30,7 +30,9 @@ export default defineConfig({
                 }
             }
         },
-        include: ['src/**/*.{test,spec}.ts'],
+        include: [
+            'src/Tests/**/*.{test,spec}.ts'
+        ],
         exclude: [
             'node_modules/',
             'dist/',

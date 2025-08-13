@@ -14,17 +14,14 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const configureServices = () => {
-    const userService = new UserService();
-    const userController = new UserController(userService);
-    const userRoutes = new UserRoutes(userController);
-    
-    return { userRoutes };
-};
+app.use((req: Request, res: Response, next) => {
+    console.log(`API Request: ${req.method} ${req.path}`);
+    next();
+});
 
-const services = configureServices();
+const services: UserRoutes = new UserRoutes(new UserController(new UserService()));
 
-app.use('/api', services.userRoutes.router);
+app.use('/api', services.router);
 
 app.get('/', (req: Request, res: Response) => {
     res.json({ message: 'Hello, from TypeScript Express!' });
@@ -42,14 +39,16 @@ app.use((err: Error, req: Request, res: Response, next: any) => {
     console.error('Unhandled error:', err);
     res.status(500).json({
         success: false,
-        message: `Internal Server error`
+        message: 'Internal Server error'
     });
 });
 
 app.use((req: Request, res: Response) => {
+    const message = `Route ${req.method} ${req.path} not found`;
+    console.warn(message);
     res.status(404).json({
         success: false,
-        message: `Route ${req.method} ${req.path} not found`
+        message: message
     });
 });
 

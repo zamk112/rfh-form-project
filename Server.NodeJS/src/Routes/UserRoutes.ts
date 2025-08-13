@@ -10,16 +10,16 @@ class UserRoutes {
     {
         this.router = Router();
         this.userController = userController;
-        this.initializeMiddleWare();
+        // this.initializeMiddleWare();
         this.initializeRoutes();
     }
 
-    private initializeMiddleWare(): void {
-        this.router.use((req, res, next) => {
-            console.log(`User API: ${req.method} ${req.path}`);
-            next();
-        });      
-    }
+    // private initializeMiddleWare(): void {
+    //     this.router.use((req, res, next) => {
+    //         console.log(`User API: ${req.method} ${req.originalUrl}`);
+    //         next();
+    //     });      
+    // }
 
     private initializeRoutes(): void {
         this.router.get('/users', this.userController.getAllUsers.bind(this.userController));
