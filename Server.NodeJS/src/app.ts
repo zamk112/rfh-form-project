@@ -8,8 +8,7 @@ const app: Express = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: ['http://localhost:3000'],
-    credentials: true
+    origin: ['http://localhost:3000']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,13 +18,13 @@ app.use((req: Request, res: Response, next) => {
     next();
 });
 
-const services: UserRoutes = new UserRoutes(new UserController(new UserService()));
-
-app.use('/api', services.router);
-
 app.get('/', (req: Request, res: Response) => {
     res.json({ message: 'Hello, from TypeScript Express!' });
 });
+
+const services: UserRoutes = new UserRoutes(new UserController(new UserService()));
+
+app.use('/api', services.router);
 
 app.get('/api/health', (req: Request, res: Response) => {
     res.status(200).json({

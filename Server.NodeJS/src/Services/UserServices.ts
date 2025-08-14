@@ -12,7 +12,7 @@ export class UserService implements IUserServices {
 
     public async getAllUsers(): Promise<User[]> {
         await setTimeout(UserService.TIMEOUT);
-        return UserService.users;
+        return [...UserService.users];
     }
 
     public async getUserById(id: number): Promise<User | undefined> {
@@ -21,7 +21,7 @@ export class UserService implements IUserServices {
     }
 
     public async createUser(userData: Omit<User, "Id">): Promise<void> {
-        await new Promise ( () => setTimeout(UserService.TIMEOUT) );
+       await setTimeout(UserService.TIMEOUT);
         const newUser = new User(UserService.userIds++, userData.UserName, userData.Email, new Date(), new Date());
         UserService.users.push(newUser);
     }
@@ -37,7 +37,7 @@ export class UserService implements IUserServices {
                 UserService.users[index] = { ...UserService.users[index], ...userData };
             }
 
-            await new Promise ( () => setTimeout(UserService.TIMEOUT) );
+            await setTimeout(UserService.TIMEOUT);
                 
         } catch (error: any) {
             throw error;
@@ -56,7 +56,7 @@ export class UserService implements IUserServices {
                 UserService.users.splice(index, 1);
             }
 
-            await new Promise ( () => setTimeout(UserService.TIMEOUT) );
+            await setTimeout(UserService.TIMEOUT);
         } catch (error: any) {
             throw error;
         }

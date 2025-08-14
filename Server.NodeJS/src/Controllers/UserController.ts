@@ -83,7 +83,7 @@ class UserController {
             if (!userData.UserName || !userData.Email) {
                 const response: APIResponse<null> = {
                     success: false,
-                    message: 'Name and email are required'
+                    message: 'UserName and Email are required'
                 };
 
                 res.status(400).json(response);
@@ -193,7 +193,7 @@ class UserController {
                 message: error instanceof Error ? error.message : 'Internal Server Error'
             };
             
-            const statusCode = error instanceof Error && error.message.includes('User not found') ? 400 : 500;
+            const statusCode = error instanceof Error && error.message.includes('User not found') ? 404 : 500;
             res.status(statusCode).json(response);
         }
     }
