@@ -1,6 +1,6 @@
-import express, { Request, Response, Express } from 'express';
+import express, { Request, Response, Express, NextFunction } from 'express';
 import cors from 'cors';
-import { UserService } from './Services/UserServices';
+import UserService from './Services/UserServices';
 import UserController from './Controllers/UserController';
 import UserRoutes from './Routes/UserRoutes';
 
@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use((req: Request, res: Response, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
     console.log(`API Request: ${req.method} ${req.path}`);
     next();
 });
@@ -34,12 +34,13 @@ app.get('/api/health', (req: Request, res: Response) => {
     });
 });
 
-app.use((err: Error, req: Request, res: Response, next: any) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error('Unhandled error:', err);
     res.status(500).json({
         success: false,
         message: 'Internal Server error'
     });
+    next();
 });
 
 app.use((req: Request, res: Response) => {

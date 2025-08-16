@@ -2,8 +2,8 @@ import IUserServices from "../Interfaces/IUserServices";
 import User from "../Models/User";
 import { setTimeout } from "timers/promises";
 
-export class UserService implements IUserServices {
-    static readonly TIMEOUT: number = 2000;
+class UserService implements IUserServices {
+    private static readonly TIMEOUT: number = 2000;
     static userIds: number = 1;
     static users: User[] = [
         new User(this.userIds++, 'zamk112', 'zamk112@gmail.com', new Date(), new Date()),
@@ -34,7 +34,7 @@ export class UserService implements IUserServices {
                 throw new Error("User not found");
             else
             {
-                UserService.users[index] = { ...UserService.users[index], ...userData };
+                UserService.users[index] = { ...UserService.users[index], ...userData, UpdatedAt: new Date() };
             }
 
             await setTimeout(UserService.TIMEOUT);
@@ -62,3 +62,5 @@ export class UserService implements IUserServices {
         }
     }
 }
+
+export default UserService;

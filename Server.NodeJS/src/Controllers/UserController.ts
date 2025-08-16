@@ -34,19 +34,18 @@ class UserController {
     {
         try 
         {
-            const id = parseInt(req.params.id);
-            
-            if(isNaN(id))
-            {
+            const idParam = req.params.id;
+
+            if (!/^\d+$/.test(idParam) || parseInt(idParam) <= 0) {
                 const response: APIResponse<null> = {
                     success: false,
                     message: 'Invalid user ID format'
                 };
                 res.status(400).json(response);
                 return;
-            }
-
-            const user = await this.userService.getUserById(id);
+            }          
+            
+            const user = await this.userService.getUserById(parseInt(idParam));
 
             if (!user)
             {
